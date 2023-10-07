@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-cocktails-search": {
+    "ng-meteo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-cocktails-search",
+            "outputPath": "dist/ng-meteo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -52,6 +52,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -87,10 +88,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-cocktails-search:build:production"
+              "browserTarget": "ng-meteo:build:production"
             },
             "development": {
-              "browserTarget": "ng-cocktails-search:build:development"
+              "browserTarget": "ng-ng-meteo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-cocktails-search:build"
+            "browserTarget": "ng-ng-meteo:build"
           }
         },
         "test": {
@@ -115,6 +116,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -23,32 +23,37 @@ export class DataService {
     });
   }
 
-  parseData(res: Data) {
-    console.log(res);
+  parseData(res: any) {
     const tempData = {
       labels: [],
       datasets: [
         {
-          label: 'Genoa',
+          label: 'Temperature',
           data: [],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1,
+        },
+        {
+          label: 'Humidity',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(255, 99, 132)',
         },
       ],
     };
-
+  
     for (let i = 0; i < res.hourly.time.length; i++) {
       const time = res.hourly.time[i];
-
       tempData.labels.push(time);
-
+  
       const temperature = res.hourly.temperature_2m[i];
+      const humidity = res.hourly.relativehumidity_2m[i];
+  
       tempData.datasets[0].data.push(temperature);
+      tempData.datasets[1].data.push(humidity);
     }
-
+  
     this.allDataMeteo.next(tempData);
-
-    console.log(tempData);
   }
+  
 }
