@@ -91,7 +91,7 @@
               "browserTarget": "ng-meteo:build:production"
             },
             "development": {
-              "browserTarget": "ng-ng-meteo:build:development"
+              "browserTarget": "ng-meteo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-ng-meteo:build"
+            "browserTarget": "ng-meteo:build"
           }
         },
         "test": {

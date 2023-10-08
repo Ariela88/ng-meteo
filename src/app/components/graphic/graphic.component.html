@@ -1,1 +1,6 @@
-<p>graphic works!</p>
+<div *ngIf="availableData | async as data">
+    <div *ngFor="let item of data | keyvalue">
+      Key: {{ item.key }}, Value: {{ item.value }}
+    </div>
+  </div>
+  
