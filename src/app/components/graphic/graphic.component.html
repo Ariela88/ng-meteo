@@ -1,0 +1,7 @@
+<div class="container" *ngIf="dataMeteo"> 
+<span>{{dataMeteo.hourly.time}}</span>
+   <p> nuvolosità</p>
+    <span *ngFor="let data of dataMeteo.hourly.windspeed_10m">{{data}} </span>
+   
+</div>
+

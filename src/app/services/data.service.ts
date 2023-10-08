@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Data } from '../model/data';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private BASE_URL =
+  readonly BASE_URL =
     'https://api.open-meteo.com/v1/forecast?latitude=44.4048&longitude=8.9444&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,weathercode,cloudcover,windspeed_10m';
 
   dataMeteo: Data[] = [];
@@ -21,6 +21,15 @@ export class DataService {
       next: (res) => this.parseData(res),
       error: (err) => console.log(err),
     });
+  }
+
+  getMeteoData():Observable<Data>{
+
+    return this.http.get<any>(this.BASE_URL).pipe(
+      tap(data => console.log(data)),
+     
+    )
+
   }
 
   parseData(res: any) {
