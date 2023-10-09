@@ -8,20 +8,24 @@ export interface Data {
         timezone: string
         timezone_abbreviation: string
         elevation: number
-        hourly_units: HourlyUnits
+        hourly_units: Forecast
         hourly: Hourly
       }
       
-      export interface HourlyUnits {
-        time: string
-        temperature_2m: string
-        relativehumidity_2m: string
-        precipitation_probability: string
-        weathercode: string
-        cloudcover: string
-        windspeed_10m: string
+      export interface Forecast {
+        time: Date;
+        temperature: number;
+        humidity: number;
+        precipitation: number;
+        cloudCover: number;
+        windSpeed: number;
+        weatherCode: number;
+        temperatureUnit: string;
+        humidityUnit: string;
+        precipitationUnit: string;
+        cloudCoverUnit: string;
+        windSpeedUnit: string;
       }
-      
       export interface Hourly {
         [key: string]: any;
         time: string[]
