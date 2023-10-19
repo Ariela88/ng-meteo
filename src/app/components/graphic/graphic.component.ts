@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from 'src/app/services/data.service';
-import { Data, Forecast } from 'src/app/model/data';
+import { MeteoService } from 'src/app/services/meteo.service';
+import { Meteo, Forecast } from 'src/app/model/data';
 
 
 @Component({
@@ -13,27 +13,14 @@ import { Data, Forecast } from 'src/app/model/data';
 })
 export class GraphicComponent implements OnInit{
 
-  dataMeteo:Data
-constructor(private data:DataService){}
+  dataMeteo:Meteo
 
 forecastArray: Forecast[] = [];
 
+constructor(private mService: MeteoService){}
+
 ngOnInit(): void {
-  this.data.getMeteoDetails().subscribe(data => this.forecastArray = data);
+  this.mService.getMeteoData().subscribe(data => this.forecastArray = data);
 }
-
-
-
-// getDataMeteo():void {
-//   this.data.getMeteoData().subscribe(
-//     res => {
-//       this.dataMeteo = res;
-//       console.log(res);
-//     },
-//     error => {
-//       console.error('Errore durante il recupero dei dati:', error);
-//     }
-//   );
-// }
   
 }

@@ -1,32 +1,24 @@
-<!-- <div class="container" *ngIf="dataMeteo"> 
-<span>{{dataMeteo.hourly.time}}</span>
-   <p> nuvolosità</p>
-    <span *ngFor="let data of dataMeteo.hourly.windspeed_10m">{{data}} </span>
-   
-</div> -->
-
 <table>
-    <thead>
-      <tr>
-        <th>time</th>
-        <th>temp</th>
-        <th>code</th>
-        <th>wind</th>
-        <th>hum</th>
-        <th>prec</th>
-        <th>cloud</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let forecast of forecastArray">
-        <td>{{forecast.time}}</td>
-        <td>{{forecast.temperature}} {{forecast.temperatureUnit}}</td>
-        <td>{{forecast.weatherCode}}</td>
-        <td>{{forecast.windSpeed}} {{forecast.windSpeedUnit}}</td>
-        <td>{{forecast.humidity}} {{forecast.humidityUnit}}</td>
-        <td>{{forecast.precipitation}} {{forecast.precipitationUnit}}</td>
-        <td>{{forecast.cloudCover}} {{forecast.cloudCoverUnit}}</td>
-      </tr>
-    </tbody>
-  </table>
-
+  <thead>
+    <tr>
+      <th>time</th>
+      <th>temp</th>
+      <th>code</th>
+      <th>wind</th>
+      <th>hum</th>
+      <th>prec</th>
+      <th>cloud</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let forecast of forecastArray">
+      <td>{{forecast.time}}</td>
+      <td>{{forecast.temperature}} {{forecast.temperatureUnit}}</td>
+      <td>{{forecast.weatherCode}}</td>
+      <td>{{forecast.windSpeed}} {{forecast.windSpeedUnit}}</td>
+      <td>{{forecast.humidity}} {{forecast.humidityUnit}}</td>
+      <td>{{forecast.precipitation}} {{forecast.precipitationUnit}}</td>
+      <td>{{forecast.cloudCover}} {{forecast.cloudCoverUnit}}</td>
+    </tr>
+  </tbody>
+</table>

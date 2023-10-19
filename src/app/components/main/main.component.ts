@@ -1,18 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
-import { Data } from 'src/app/model/data';
+import { MeteoService } from 'src/app/services/meteo.service';
+import { Forecast, Meteo } from 'src/app/model/data';
 import { Chart } from 'chart.js/auto';
-import {
-  ChartConfiguration,
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  Title,
-  registerables,
-} from 'chart.js';
+
 
 @Component({
   selector: 'app-main',
@@ -22,78 +14,49 @@ import {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  dataMeteo?: Data;
-
-  constructor(private data: DataService) {}
+  constructor(private mService: MeteoService) {}
 
   ngOnInit(): void {
-    Chart.register(...registerables);
-    Chart.register(
-      LineController,
-      LineElement,
-      PointElement,
-      LinearScale,
-      Title
-    );
-    this.getDataMeteo();
+    this.mService.getMeteoData().subscribe((data) => {
+      this.initChart(data);
+    });
   }
 
-  getDataMeteo() {
-    this.data.getData();
-    this.data.allDataMeteo.subscribe((res) => this.initChart(res));
-  }
+  initChart(data: Forecast[]) {
 
-  initChart(res: any) {
-    console.log(res);
-    let grapharea = (
-      document.getElementById('myChart') as HTMLCanvasElement
-    ).getContext('2d');
+    const ctx:any = document.getElementById('myChart');
 
-    if (res !== null) {
-      const labels = res.labels;
-      const data = res.datasets[0].data;
-
-      const temperatureData = res.datasets[0].data;
-      const humidityData = res.datasets[1].data;
-
-      const config: ChartConfiguration = {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: 'Temperature',
-              data: temperatureData,
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-            },
-            {
-              label: 'Humidity',
-              data: humidityData,
-              fill: false,
-              borderColor: 'rgb(255, 99, 132)',
-            },
-          ],
-        },
-        options: {
-          animations: {
-            tension: {
-              duration: 1000,
-              easing: 'linear',
-              from: 1,
-              to: 0,
-              loop: true,
-            },
+    const chart:any = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: data.map(forecast => forecast.time.toISOString()),
+        datasets: [
+          {
+            label: 'precipitation probability',
+            data: data.map(forecast => forecast.precipitation),
+            borderWidth: 1,
           },
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
+          {
+            label: 'humidity',
+            data: data.map(forecast => forecast.humidity),
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '%'
             },
           },
         },
-      };
-      let chart = new Chart(grapharea, config);
-    }
+      },
+    });
+
+    chart.canvas.parentNode.style.height = '500px';
+
   }
 }
