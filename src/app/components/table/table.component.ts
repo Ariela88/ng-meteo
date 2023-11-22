@@ -9,8 +9,8 @@ import {MatTableModule} from '@angular/material/table';
   selector: 'app-graphic',
   standalone: true,
   imports: [CommonModule,MatTableModule],
-  templateUrl: './graphic.component.html',
-  styleUrls: ['./graphic.component.scss'],
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class GraphicComponent implements OnInit{
 

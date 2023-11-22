@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
-import { GraphicComponent } from './components/graphic/graphic.component';
+import { GraphicComponent } from './components/table/table.component';
 import { DataViewerComponent } from './components/data-viewer/data-viewer.component';
 
 const routes: Routes = [

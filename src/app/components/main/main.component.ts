@@ -70,5 +70,8 @@ export class MainComponent implements OnInit {
   
     chart.canvas.parentNode.style.height = '500px';
   }
+
+
+  
   
 }

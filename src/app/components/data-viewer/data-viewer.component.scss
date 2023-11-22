@@ -1,5 +1,7 @@
 img{
     width: 300px;
+    object-fit: cover;
+    height: 300px;
 }
 
 h3{
@@ -17,7 +19,7 @@ h3{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around; 
-    gap: 24px;
+    
 }
 
 .data-meteo-container {
@@ -25,6 +27,9 @@ h3{
         display: flex;
     flex-direction: column;
     align-items: center; 
+  
+    padding: 16px;
+    
 }
 
 .example-card {

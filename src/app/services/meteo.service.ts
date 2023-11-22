@@ -74,4 +74,6 @@ export class MeteoService {
 
     return roundedKnot;
   }
+
+  
 }

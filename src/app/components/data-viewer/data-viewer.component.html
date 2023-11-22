@@ -10,8 +10,8 @@
     </mat-form-field>
   </div>
 
-  <div *ngFor="let forecast of meteoData" class="data-meteo-container">
-    <ng-container *ngIf="isSameDay(forecast.time, selectedDate.value.start)">
+  <ng-container *ngFor="let forecast of meteoData">
+    <div class="data-meteo-container" *ngIf="isSameDay(forecast.time, selectedDate.value.start)">
       <mat-card class="example-card">
         <mat-card-header>
           <mat-card-title><p>{{ forecast.time.toLocaleDateString() + ' Ore:' + forecast.time.getHours() }}</p></mat-card-title>
@@ -19,6 +19,7 @@
         </mat-card-header>
         <img mat-card-image [src]="forecast.weatherIcon" alt="Icona meteo">
       </mat-card>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
+  
 </div>
