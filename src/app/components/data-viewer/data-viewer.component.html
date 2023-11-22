@@ -1,0 +1,24 @@
+<h3>Il Meteo Oggi a Genova: </h3>
+
+<div class="main-container" *ngIf="meteoData">
+  <div class="date-picker-container">
+    <mat-form-field>
+      <mat-label>Seleziona una data</mat-label>
+      <input matInput [matDatepicker]="picker" (dateChange)="dateSelected($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div *ngFor="let forecast of meteoData" class="data-meteo-container">
+    <ng-container *ngIf="isSameDay(forecast.time, selectedDate.value.start)">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title><p>{{ forecast.time.toLocaleDateString() + ' Ore:' + forecast.time.getHours() }}</p></mat-card-title>
+          <mat-card-subtitle><p>{{ forecast.temperature }} {{ forecast.temperatureUnit }}</p></mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="forecast.weatherIcon" alt="Icona meteo">
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

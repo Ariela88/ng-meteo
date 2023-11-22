@@ -25,6 +25,7 @@ export interface Meteo {
         precipitationUnit: string;
         cloudCoverUnit: string;
         windSpeedUnit: string;
+        weatherIcon: string;
       }
       export interface Hourly {
         [key: string]: any;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MeteoService } from 'src/app/services/meteo.service';
-import { Forecast, Meteo } from 'src/app/model/data';
+import { Forecast } from 'src/app/model/data';
 import { Chart } from 'chart.js/auto';
 
 
@@ -23,13 +23,12 @@ export class MainComponent implements OnInit {
   }
 
   initChart(data: Forecast[]) {
-
-    const ctx:any = document.getElementById('myChart');
-
-    const chart:any = new Chart(ctx, {
+    const ctx: any = document.getElementById('myChart');
+  
+    const chart: any = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: data.map(forecast => forecast.time.toISOString()),
+        labels: data.map(forecast => forecast.time.toLocaleDateString() +' : ore ' +forecast.time.getHours()),
         datasets: [
           {
             label: 'precipitation probability',
@@ -41,6 +40,12 @@ export class MainComponent implements OnInit {
             data: data.map(forecast => forecast.humidity),
             borderWidth: 1,
           },
+          {
+            label: 'temperature',
+            data: data.map(forecast => forecast.temperature), 
+            borderWidth: 1,
+          },
+          
         ],
       },
       options: {
@@ -52,11 +57,18 @@ export class MainComponent implements OnInit {
               text: '%'
             },
           },
+          y1: { 
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Temperature (°C)'
+            },
+          },
         },
       },
     });
-
+  
     chart.canvas.parentNode.style.height = '500px';
-
   }
+  
 }

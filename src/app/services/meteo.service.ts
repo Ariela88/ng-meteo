@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Meteo, Forecast } from '../model/data';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { Forecast } from '../model/data';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,8 @@ export class MeteoService {
         windSpeedUnit: 'Kn',
         precipitationUnit: data.hourly_units.precipitation_probability,
         humidityUnit: data.hourly_units.relativehumidity_2m,
-        temperatureUnit: data.hourly_units.temperature_2m
+        temperatureUnit: data.hourly_units.temperature_2m,
+        weatherIcon: this.getWeatherIcon(data.hourly.weathercode[i]),
       }
 
       tempArray.push(forecast);
@@ -44,22 +45,26 @@ export class MeteoService {
 
     return tempArray;
 
-
-    // return data.hourly.time.map((_:any, i:number) => ({
-    //     time: new Date(data.hourly.time[i]),
-    //     cloudCover: data.hourly.cloudcover[i],
-    //     windSpeed: data.hourly.windspeed_10m[i],
-    //     precipitation: data.hourly.precipitation_probability[i],
-    //     humidity: data.hourly.relativehumidity_2m[i],
-    //     temperature: data.hourly.temperature_2m[i],
-    //     weatherCode: data.hourly.weathercode[i],
-    //     cloudCoverUnit: data.hourly_units.cloudcover,
-    //     windSpeedUnit: data.hourly_units.windspeed_10m,
-    //     precipitationUnit: data.hourly_units.precipitation_probability,
-    //     humidityUnit: data.hourly_units.relativehumidity_2m,
-    //     temperatureUnit: data.hourly_units.temperature_2m
-    // }))
   }
+
+  getWeatherIcon(weatherCode: number): string {
+    switch (weatherCode) {
+      case 0:
+        return 'assets/sunny.png';
+      case 1:
+      case 2:
+      case 3:
+        return 'assets/cloudy.png';
+      case 61:
+        case 62:
+          case 65:
+            return 'assets/rainy.png';
+                default:
+        return 'assets/default.png'; 
+    }
+  }
+  
+  
 
   fromKmHToKnot(speed: number): number{
 

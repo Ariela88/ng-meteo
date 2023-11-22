@@ -1,0 +1,37 @@
+img{
+    width: 300px;
+}
+
+h3{
+    width: 100%;
+    text-align: center;
+}
+.date-picker-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    gap: 24px;
+}
+
+.data-meteo-container {
+    width: 400px;
+        display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
